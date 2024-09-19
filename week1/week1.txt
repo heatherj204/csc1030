@@ -1,0 +1,127 @@
+#!/usr/bin/env python3
+
+def q1_sum(text):
+    total = 0
+    i = 0
+    while i < len(text):
+        j = 0
+        newline= text[i]
+        while j < len(newline):
+            number = int(newline[j])
+            if (number % 2 == 0):
+                total += number
+            j += 1
+        i += 1
+    return total
+print(q1_sum([
+    [1, 0, 2],
+    [5, 5, 7],
+    [9, 4, 3]]))
+
+
+#!/usr/bin/env python3
+
+def move_vow(text):
+    vowels = 'aeiouAEIOU'
+    vowonly = ''
+    constonly = ''
+    for letter in text:
+        if letter in vowels:
+            vowonly += letter
+        else:
+            constonly += letter
+    vowfirst = vowonly + constonly
+    return vowfirst
+
+print(move_vow('This is DCU!'))
+
+
+#!/usr/bin/env python3
+
+class Memories():
+    def __init__(self, **kwargs) -> None:
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+    def remember(self, key):
+        return(getattr(self, key, False))
+
+person1 = Memories(name='Tom', age=32, salary=50000)
+print(person1.remember('salary'))
+print(person1.remember('email'))
+
+
+#!/usr/bin/env python3
+
+class Test():
+    def __init__(self, subjuct_name, correct_answers, passing_mark) -> None:
+        self.subjuct_name = subjuct_name
+        self.correct_answers = correct_answers
+        self.passing_mark = int(passing_mark.strip('%'))
+
+class Student():
+    def __init__(self, name) -> None:
+        self.name = name
+
+    def take_test(self, test: Test, answers):
+        correct = []
+        for answer in answers:
+            if answer in test.correct_answers:
+                correct.append(answer)
+
+        grade = (len(correct) / len(test.correct_answers)) * 100
+
+        if grade <= test.passing_mark:
+            print(f"{self.name} faild the {test.subjuct_name} test!")
+        else:
+            print(f"{self.name} passed the {test.subjuct_name} test with the score {grade}%")
+
+paper1 = Test('Maths', ['1A', '2C', '3D', '4A', '5A'], '60%')
+paper2 = Test('Chemistry', ['1C', '2C', '3D', '4A'], '75%')
+paper3 = Test('Computing', ['1D', '2C', '3C', '4B', '5D', '6C', '7A'], '75%')
+
+stu1 = Student('Tom')
+stu1.take_test(paper2, ['1C', '2C', '3D', '4A'])
+
+stu2 = Student('John')
+stu2.take_test(paper1, ['1B', '2C', '3A', '4A', '5B'])
+
+
+#!/usr/bin/env python3
+
+def histogram(numList, replaceChar):
+    for num in numList:
+        num = int(num)
+        line = replaceChar * num
+        print(line)
+histogram([6, 2, 15 , 3, 20 , 5], '=' )
+
+
+#!/usr/bin/env python3
+
+def filter_star(dict, rating):
+    chocoDict = {}
+    for k, v in dict.items():
+        if len(v) == rating:
+            chocoDict[k] = v
+    if len(chocoDict) > 0:
+        return chocoDict
+    else:
+        return "No result found!"
+
+res1 = filter_star({
+  'Luxury Chocolates': '*****',
+  'Tasty Chocolates': '****',
+  'Big Chocolates': '*****',
+  'Generic Chocolates': '***'
+}, 4)
+
+print(res1)
+
+res2 = filter_star({
+  'Luxury Chocolates': '*****',
+  'Tasty Chocolates': '****',
+  'Big Chocolates': '*****',
+  'Generic Chocolates': '***'
+}, 2)
+
+print(res2)
