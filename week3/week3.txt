@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+
+def sum_q1(n):
+    if n == 0:
+        return 0
+    return n + sum_q1(n - 1)
+
+print(sum_q1(6))
+
+
+#!/usr/bin/env python3
+
+def reverseInt(n, num=0):
+    if n == 0:
+        return num
+    lastDig = n % 10
+    num = (num * 10) + lastDig
+    n = (n // 10)
+    return reverseInt(n, num)
+
+print(reverseInt(123))
+
+
+#!/usr/bin/env python3
+
+def reverseString(line, revLine=""):
+    if line == "":
+        return revLine
+    lastChar = line[-1]
+    revLine += lastChar
+    line = line[:-1]
+    return reverseString(line, revLine)
+
+print(reverseString("hello"))
+
+
+#!/usr/bin/env python3
+
+def reverseLst(lst, revLst=None):
+    if revLst == None:
+        revLst = []
+
+    if lst == []:
+        return revLst
+    lastItem = lst[-1]
+    revLst.append(lastItem)
+    lst.pop()
+    return reverseLst(lst, revLst)
+
+print(reverseLst([1, 2, 3, 4]))
+
+
+#!/usr/bin/env python3
+
+def multiply(num1, num2):
+    if (num1 or num2 < 0):
+        if num1 == -1:
+            return -1
+        elif num2 == 0:
+            return 0
+
+        return num1 + (multiply(num1, num2 + 1))
+    else:
+        if num1 == -1:
+            return -1
+        elif num2 == 0:
+            return 0
+        return num1 + (multiply(num1, num2 - 1))
+
+print(multiply(10, 12))
+
+
+def is_heteromecic(n, num=1):
+    if n == num:
+        return False
+    if num * (num + 1) == n:
+        return True
+    return is_heteromecic(n, num + 1)
+
+
+print(is_heteromecic(110))
+
+
+def findLen(str, strlen=0):
+    if str == "":
+        return strlen
+    strlen += 1
+    str = str[:-1]
+    return findLen(str, strlen)
+
+print(findLen("Hello"))
